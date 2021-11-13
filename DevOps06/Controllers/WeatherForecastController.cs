@@ -24,6 +24,12 @@ namespace DevOps06.Controllers
         }
 
         [HttpGet]
+        public IActionResult Welcome()
+        {
+            return Ok("Welcom to .net web api/Azure DevOps and Azure app service.");
+        }
+
+        [HttpGet("weather")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
