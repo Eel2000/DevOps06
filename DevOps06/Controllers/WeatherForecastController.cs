@@ -26,7 +26,7 @@ namespace DevOps06.Controllers
         [HttpGet]
         public IActionResult Welcome()
         {
-            return Ok("Welcom to .net web api/Azure DevOps and Azure app service.");
+            return Ok("Welcom to .net web API/Azure DevOps and Azure app service.");
         }
 
         [HttpGet("weather")]
