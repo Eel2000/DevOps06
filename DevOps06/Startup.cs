@@ -1,7 +1,11 @@
+using DevOps06.Contexts;
+using DevOps06.Interfaces;
+using DevOps06.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +32,11 @@ namespace DevOps06
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Remote"));
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(options=>
             {
@@ -48,6 +57,9 @@ namespace DevOps06
                 var xmlFilname = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilname));
             });
+
+            //services
+            services.AddTransient<ILibraryService, LibraryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
