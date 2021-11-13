@@ -37,6 +37,7 @@ namespace DevOps06
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
