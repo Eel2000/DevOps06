@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DevOps06
@@ -27,7 +29,25 @@ namespace DevOps06
         {
 
             services.AddControllers();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options=>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = Assembly.GetExecutingAssembly().GetName().Name,
+                    Description = "The 6th project to get started with Azure DevOps.",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                    {
+                        Name = "Elizer Bwana",
+                        Email = "eliezerbwana@hotmail.com",
+                        Url = new Uri("https://www.twitter.com/BwanaEliezer")
+                    }
+                });
+
+                //using system.reflection
+                var xmlFilname = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilname));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
