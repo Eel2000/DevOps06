@@ -47,7 +47,7 @@ namespace DevOps06
                     Description = "The 6th project to get started with Azure DevOps.",
                     Contact = new Microsoft.OpenApi.Models.OpenApiContact
                     {
-                        Name = "Elizer Bwana",
+                        Name = "Eliezer Bwana",
                         Email = "eliezerbwana@hotmail.com",
                         Url = new Uri("https://www.twitter.com/BwanaEliezer")
                     }
