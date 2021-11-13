@@ -29,6 +29,12 @@ namespace DevOps06.Controllers
             return Ok("Welcom to .net web API/Azure DevOps and Azure app service.");
         }
 
+        [HttpGet("greet/{name}")]
+        public IActionResult Greeting(string name)
+        {
+            return Ok($"Hello {name}.\nI'm greeting you from Azure site publish by azure devOps Pipeline.");
+        }
+
         [HttpGet("weather")]
         public IEnumerable<WeatherForecast> Get()
         {
